@@ -60,10 +60,18 @@ const App: () => Node = () => {
   useEffect (() => {
     requestUserPermission();
     NotificationListener();
-    GetFCMToken();
+    GetFCMToken().then((token) => {
+      console.log("TOKEN",token)
+    })
+
+    
   } , []);
 
   const isDarkMode = useColorScheme() === 'dark';
+  // const token = GetFCMToken();
+  // console.log("Testing");
+  // console.log(token);
+  
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,

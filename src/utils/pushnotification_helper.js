@@ -14,13 +14,23 @@ export async function requestUserPermission() {
 
 export async function GetFCMToken() {
     let fcmToken = AsyncStorage.getItem('fcmToken');
+    console.log("JOJOJOJ")
     if (!fcmToken) {
-
+        console.log("Nop token")
         try {
             let fcmToken = messaging().getToken();
+            messaging()
+            .getToken()
+            .then(token => {
+              return console.log("TTT",token);
+            });
             if (fcmToken) {
                 AsyncStorage.setItem('fcmToken', fcmToken);
-                console.log('fcmToken', fcmToken);
+                console.log('fcmTokenA', fcmToken);
+            }else{
+                //Log error
+                console.log("NNOOONONO")
+
             }
         } catch (error) {
             console.log(error);
@@ -28,6 +38,7 @@ export async function GetFCMToken() {
 
         }
     }
+    console.log("fcmTokenB", fcmToken);
 
     return fcmToken;
 }
